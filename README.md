@@ -1320,78 +1320,53 @@ You have to replace them with the values that we have previously set when we cre
 
 ### 8.3 - Aditional service ➕
 
-### LiteSpeed ⚡️
+### ClamAV 🦠
 
-🧠 <b> What is LiteSpeed❓</b> It is a proprietary web server software. It is the fourth most popular web server, and is estimated to be used by 10% of websites.
+🧠 <b> What is ClamAV❓</b> is an open-source antivirus engine designed to detect malware and viruses in a wide range of file types. It is widely used to secure systems, email servers, and file-sharing networks.
 
-1 ◦ Before installing any software, it is important to ensure that the system is up to date.
+### Step-by-Step Guide to Install and Use ClamAV !
 
-```sudo apt update```
+1 ◦ Install ClamAV and its Daemon
+The ClamAV package and its daemon can be installed using this command:
+```sh
+sudo apt install clamav clamav-daemon -y
+```
+   * `clamav`: The main antivirus engine.
+   * `clamav-daemon`: Allows ClamAV to run as a background service for real-time scanning.
+   * `-y`: Automatically confirms the installation.
 
-<img width="701" alt="Screen Shot 2022-11-25 at 2 59 17 AM" src="https://user-images.githubusercontent.com/66915274/203885206-209ac64f-51a3-42e4-814e-2063cf83a156.png">
+2 ◦ Manage the ClamAV Daemon
 
+The daemon is responsible for real-time scanning. You can start, enable, stop, or check its status using the following commands:
 
-```sudo apt upgrade```
+   * Start the daemon:
+```sh
+sudo systemctl start clamav-daemon
+```
+   * Enable the daemon (start on boot):
+```sh
+sudo systemctl enable clamav-daemon
+```
+   * Stop the daemon:
+```sh
+sudo systemctl stop clamav-daemon
+```
+   * Check the status:
+```sh
+sudo systemctl status clamav-daemon
+```
+This command displays whether the daemon is active and running.
 
-<img width="507" alt="Screen Shot 2022-11-25 at 3 00 18 AM" src="https://user-images.githubusercontent.com/66915274/203885306-3b3eb6cd-64cb-4d34-967a-19e650286cf5.png">
+3 ◦ Perform Scans with ClamAV
 
-2 ◦ By default, OpenLiteSpeed is available in the Debian 11 base repository. So, you must run the following command to add the OpenLiteSpeed repository to your Debian system:
+ClamAV provides a versatile scanning tool called clamscan. You can use it to scan directories, files, or your entire system.
 
-```wget -O - https://repo.litespeed.sh | sudo bash```
+   * Scan a specific directory:
+```sh
+clamscan -r /path/to/directory
+```
+The -r option enables recursive scanning (scans subdirectories).
 
-(If you received a error similar to: ..."curl: command not found", you need install the application "curl" for able to running the script), so run this command below: 
-
-```sudo apt install curl -y```
-
-After that run again the script to install OpenLiteSpeed:
-
-```wget -O - https://repo.litespeed.sh | sudo bash```
-
-As the command is long, I connected via ssh:
-
-<img width="1129" alt="Screen Shot 2022-11-25 at 3 05 49 AM" src="https://user-images.githubusercontent.com/66915274/203885808-b4e0ff9a-580c-4121-b06f-ec229e514df9.png">
-
-3 ◦ Again, we update the packages and install OpenLiteSpeed.
-
-```sudo apt update```
-
-<img width="627" alt="Screen Shot 2022-11-25 at 3 07 31 AM" src="https://user-images.githubusercontent.com/66915274/203885968-e0297682-b18c-4363-8fcb-7553cd908f91.png">
-
-```sudo apt install openlitespeed```
-
-<img width="801" alt="Screen Shot 2022-11-25 at 3 11 22 AM" src="https://user-images.githubusercontent.com/66915274/203886321-dbda490e-726d-4dfb-aa91-b9e10206976a.png">
-
-
-4 ◦ The default password for OpenLiteSpeed is 123456. We will change the password to something more secure with the following command.
-
-```sudo /usr/local/lsws/admin/misc/admpass.sh```
-
-<img width="607" alt="Screen Shot 2022-11-25 at 3 12 33 AM" src="https://user-images.githubusercontent.com/66915274/203886432-cb14665f-63a0-4373-919d-0dff7c04b212.png">
-
-5 ◦ We configure the firewall to allow connections through ports 8088 and 7080. We then add the rules in the port forwarding.
-
-```sudo ufw allow 8088/tcp```
-
-<img width="446" alt="Screen Shot 2022-11-25 at 3 15 39 AM" src="https://user-images.githubusercontent.com/66915274/203886798-41d4c14f-cb4a-4982-bd92-82ade321f244.png">
-
-```sudo ufw allow 7080/tcp```
-
-<img width="445" alt="Screen Shot 2022-11-25 at 3 15 59 AM" src="https://user-images.githubusercontent.com/66915274/203886833-f9016672-8fda-46fc-87a9-cd194de3cc1b.png">
-
-```sudo ufw reload```
-
-<img width="393" alt="Screen Shot 2022-11-25 at 3 16 18 AM" src="https://user-images.githubusercontent.com/66915274/203886863-03406d5c-456a-4e80-83e9-1bf3904154d3.png">
-
-Port forwarding rules.
-
-<img width="825" alt="Screen Shot 2022-11-25 at 3 16 52 AM" src="https://user-images.githubusercontent.com/66915274/203886923-1db4cf56-d197-4c41-87f6-846253e08450.png">
-
-
-6 ◦ Once we have completed the previous step we can connect. We will put in the search engine of our browser ```localhost:7080``` we provide our login credentials and we will have access to everything.
-
-<img width="800" alt="Screen Shot 2022-11-25 at 3 18 53 AM" src="https://user-images.githubusercontent.com/66915274/203887182-73d29abc-674c-4ace-bffb-de42b636ec38.png">
-
-<img width="1206" alt="Screen Shot 2022-11-24 at 8 49 24 PM" src="https://user-images.githubusercontent.com/66915274/203856104-d4454636-2f45-4e51-8cf5-a1501398ea57.png">
 
 <br>
 <br>
